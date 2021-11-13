@@ -3,11 +3,11 @@
 <p align="justify">Servo motors are a very useful kind of actuator which are capable of rotating by a precise amount or to a precise position or angle. They are used for finely 
 controlled motion such as in robotic arms.</p>
 
-<p align="justify">Servo motors are comprised of four main components; a position sensor, a control circuit, a gearbox and a DC motor (though AC motors are used as well). 
-Compared to normal motors, servo motors are built as a closed loop system which uses feedback to determine the exact position of the motor and control its motion. This feedback is
-obtained from the position sensor which is usually a potentiometer. The output of the position sensor is fed into the control circuit where it is compared with the target position
-to create the output required to rotate the motor to the target position. The gearbox is used to decrease the speed and increase the torque of the DC motor, which rotates the 
-motor shaft as intended.</p>
+<p align="justify">Servo motors are comprised of four main components; a position sensor, a control circuit, a gearbox and a DC motor (AC motors are used as well, though not in hobby components). Compared to normal motors which simply rotate as long as a current is provided as input, servo motors are built as a closed loop system which uses feedback to determine the exact position of the motor and control its motion. This feedback is obtained from the position sensor which is usually a potentiometer. The output of the position sensor is fed into the control circuit where it is compared with the desired position to create the output required to rotate the motor to the target position. The desired position is determined by the input voltage provided to the motor as a PWM signal. The gearbox is used to decrease the speed and increase the torque of the DC motor.</p>
 
-<p align="justify">The potentiometer is attached to the final gear of the gearbox so that when the motor rotates, the potentiometer would rotate as well, producing a voltage 
-related to the absolute angle of the motor shaft. Within the control circuit this voltage will be compared with the input voltage.</p>
+<p align="justify">The potentiometer is attached to the final gear of the gearbox so that when the motor rotates the potentiometer would rotate as well, producing a voltage 
+related to the absolute angle of the motor shaft. Within the control circuit, this feedback voltage will be compared with the input voltage to the motor and an output current will be generated to rotate the motor shaft in a direction such that the difference between the feedback voltage and the input voltage will be reduced. Once the difference becomes zero, the motor will stop rotating.</p>
+
+<p align="justify">The input to the servo motor is provided as a 50 Hz PWM signal. The width or duty cycle of the PWM signal determines the angle the motor shaft should be rotated to. A 1 ms or 5% duty cycle PWM signal corresponds to a motor shaft position of 0&#xb0; while a 2 ms or 10% duty cycle PWM signal corresponds to a motor shaft position of 180&#xb0;. Any position between can be obtained by providing a PWM signal of duty cycle between 5% and 10% i.e. the motor shaft can be rotated to any angle between 0&#xb0; and 180&#xb0; by providing the relevant duty cycle PWM signal.</p>
+
+<p align="justify">In this code the duty cycle of the PWM signal is incremented and decremented within FOR loops such that the motor rotates 1 degree every 20 ms from 0&#xb0; to 180&#xb0; and back in a sweeping motion. The fast PWM generation mode of the ATMega32A is used to generate the PWM signal. For more information on fast PWM and PWM generation visit my PWM-fast repo <a href="https://github.com/asitha-navaratne/PWM-fast">here</a>.</p>
